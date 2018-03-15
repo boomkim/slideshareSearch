@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 상세정보 
+  div
+    span
+      img(src=doc._source.ThumbnailXLargeURL)
+    p 제목: #{doc._source.Title}
+    p 작성자: #{doc._source.Username}
+    p 설명: #{doc._source.Description}
+    p 주소:&nbsp;
+      a(href=doc._source.URL) #{doc._source.URL}

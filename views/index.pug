@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  if hits
+    h3 Keywords: #{q}
+    h3 Results: #{total}
+    hr
+    each hit in hits
+      div
+        p 제목:&nbsp;
+          a(href="/slides/"+hit._source.ID) #{hit._source.Title}
+        p 작성자:&nbsp;
+          a(href="/authors/"+hit._source.Username) #{hit._source.Username}
+        p 작성일: #{hit._source.Created}
+        p 주소:&nbsp;
+          a(href=hit._source.URL)= hit._source.URL
+        hr
+    div!= pages2

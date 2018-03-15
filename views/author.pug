@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 작성자 정보: #{author} 
+  p 게시물 수: #{total}
+  each hit in hits
+    div
+      p 제목:&nbsp;
+        a(href="/slides/"+hit._source.ID) #{hit._source.Title}
+      p 작성일: #{hit._source.Created}
+      p 주소:&nbsp;
+          a(href=hit._source.URL)= hit._source.URL
+      hr
+  div!= pages2
