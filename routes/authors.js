@@ -27,14 +27,13 @@ router.get('/:author', function(req, res, next) {
 		  throw err;
 	  }
           var paginator = pagination.create('search', {prelink:'/authors/'+author, current: pageNum, rowsPerPage: perPage, totalResult: body.hits.total});
-	  var pages2 = paginator.render();
+	  var pages = paginator.render();
 	  res.render('author',{
 		  hits: body.hits.hits,
 			page: pageNum,
 			total: body.hits.total,
-			pages: Math.ceil(body.hits.total / perPage),
-			author: author,
-			pages2: pages2
+			pages: pages,
+			author: author
 	  });
 	});
 });

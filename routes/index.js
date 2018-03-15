@@ -30,14 +30,13 @@ router.get('/', function(req, res, next) {
         throw err;
       }
       var paginator = pagination.create('search', {prelink:'/?q='+req.query.q, current: pageNum, rowsPerPage: perPage, totalResult: body.hits.total});
-      var pages2 = paginator.render();
+      var pages = paginator.render();
       res.render('index', {
         hits: body.hits.hits,
         page: pageNum,
         total: body.hits.total,
-        pages: Math.ceil(body.hits.total / perPage),
-        pages2: pages2,
-	q: req.query.q
+        pages: pages,
+	      q: req.query.q
       });
     });
   }else{
