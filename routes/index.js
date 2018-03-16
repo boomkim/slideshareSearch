@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var client = require('../config/elasticsearch');
+var client = require('../config/elasticsearch')();
 var pagination = require('pagination');
 
 /* GET home page. */
@@ -31,6 +31,7 @@ router.get('/', function(req, res, next) {
       }
       var paginator = pagination.create('search', {prelink:'/?q='+req.query.q, current: pageNum, rowsPerPage: perPage, totalResult: body.hits.total});
       var pages = paginator.render();
+      console.log(pages);
       res.render('index', {
         hits: body.hits.hits,
         page: pageNum,
